@@ -8,7 +8,7 @@ import org.apache.commons.io.FileUtils
 import java.io.File
 import scala.annotation.tailrec
 
-class DirInfo(val conf: Config) {
+final case class DirInfo(conf: AppConfig) {
 
   type FileRoute = Map[String, HttpResponse]
   type Routes = Map[String, FileRoute]
@@ -49,7 +49,7 @@ class DirInfo(val conf: Config) {
 
     val links = routes.keySet.map(name =>
       s"<a href=\"http://${conf.host}:${conf.port}/$name\">$name</a><br />"
-    ).foldLeft("")(_ + _)
+    ).reduceLeft(_ + _)
 
     val rootResponse = HttpResponse(entity = HttpEntity(
       ContentTypes.`text/html(UTF-8)`,
@@ -57,8 +57,4 @@ class DirInfo(val conf: Config) {
 
     routes + ("" -> Map("/" -> rootResponse))
   }
-}
-
-object DirInfo {
-  def apply(conf: Config): DirInfo = new DirInfo(conf)
 }

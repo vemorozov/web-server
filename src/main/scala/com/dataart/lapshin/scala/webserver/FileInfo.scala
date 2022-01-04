@@ -1,11 +1,11 @@
 package com.dataart.lapshin.scala.webserver
 
-import akka.http.scaladsl.model.{ContentType, ContentTypes, HttpEntity, HttpResponse, MediaTypes}
+import akka.http.scaladsl.model._
 import org.apache.commons.io.{FileUtils, FilenameUtils}
 
 import java.io.File
 
-class FileInfo(val file: File) {
+final case class FileInfo(file: File) {
 
   val name: String =
     file.getName
@@ -24,14 +24,11 @@ class FileInfo(val file: File) {
       case "jpeg" => ContentType(MediaTypes.`image/jpeg`)
       case "gif"  => ContentType(MediaTypes.`image/gif`)
       case "pdf"  => ContentType(MediaTypes.`application/pdf`)
+      case _      => ContentTypes.`text/plain(UTF-8)`
     }
 
   val httpResponse: HttpResponse = {
     val content = FileUtils.readFileToByteArray(file)
     HttpResponse(entity = HttpEntity(contentType, content))
   }
-}
-
-object FileInfo {
-  def apply(file: File): FileInfo = new FileInfo(file)
 }
