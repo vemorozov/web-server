@@ -25,6 +25,6 @@ object WebServerApp {
       .newServerAt(config.host, config.port)
       .bind(dirInfo.routes)
   }
-
-  object WebServerModule extends AbstractModule
 }
+
+object WebServerModule extends AbstractModule
