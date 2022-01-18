@@ -3,12 +3,13 @@ package com.dataart.lapshin.scala.webserver
 import akka.http.scaladsl.model._
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
+import com.google.inject.Inject
 import org.apache.commons.io.FileUtils
 
 import java.io.File
 import scala.annotation.tailrec
 
-final case class DirInfo(conf: AppConfig) {
+final case class DirInfo @Inject()(conf: AppConfig) {
 
   type FileRoute = Map[String, HttpResponse]
   type Routes = Map[String, FileRoute]

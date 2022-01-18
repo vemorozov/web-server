@@ -15,7 +15,6 @@ final case class FileInfo(file: File) {
 
   val contentType: ContentType =
     ext match {
-      case "txt"  => ContentTypes.`text/plain(UTF-8)`
       case "xml"  => ContentTypes.`text/xml(UTF-8)`
       case "html" => ContentTypes.`text/html(UTF-8)`
       case "htm"  => ContentTypes.`text/html(UTF-8)`

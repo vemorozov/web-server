@@ -7,16 +7,18 @@ lazy val root = (project in file("."))
     name := "web-server"
   )
 
-val AkkaVersion = "2.6.18"
-val AkkaHttpVersion = "10.2.7"
-val CommonsIoVersion = "2.11.0"
-val LogbackVersion = "1.2.10"
+val akkaVersion = "2.6.18"
+val akkaHttpVersion = "10.2.7"
+val commonsIoVersion = "2.11.0"
+val logbackVersion = "1.2.10"
+val guiceVersion = "5.0.1"
 
 libraryDependencies ++= Seq(
-  "com.typesafe.akka" %% "akka-actor-typed" % AkkaVersion,
-  "com.typesafe.akka" %% "akka-stream"      % AkkaVersion,
-  "com.typesafe.akka" %% "akka-http"        % AkkaHttpVersion,
-  "com.typesafe.akka" %% "akka-slf4j"       % AkkaVersion,
-  "commons-io"         % "commons-io"       % CommonsIoVersion,
-  "ch.qos.logback"     % "logback-classic"  % LogbackVersion % Runtime
+  "com.typesafe.akka" %% "akka-actor-typed" % akkaVersion,
+  "com.typesafe.akka" %% "akka-stream"      % akkaVersion,
+  "com.typesafe.akka" %% "akka-http"        % akkaHttpVersion,
+  "com.typesafe.akka" %% "akka-slf4j"       % akkaVersion,
+  "commons-io"         % "commons-io"       % commonsIoVersion,
+  "ch.qos.logback"     % "logback-classic"  % logbackVersion % Runtime,
+  "com.google.inject"  % "guice"            % guiceVersion
 )
