@@ -1,6 +1,11 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
+enablePlugins(JavaAppPackaging)
+
+ThisBuild / version := "0.1.0"
 
 ThisBuild / scalaVersion := "2.13.7"
+
+Docker / packageName := "dockerised-web-server"
+Docker / dockerExposedPorts := Seq(8080)
 
 lazy val root = (project in file("."))
   .settings(
